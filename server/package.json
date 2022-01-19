@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "dev": "nodemon --exec babel-node App.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^14.1.1",
+    "express": "^4.17.2",
+    "express-validator": "5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.7",
+    "uuid": "^8.3.2"
+  }
+}
