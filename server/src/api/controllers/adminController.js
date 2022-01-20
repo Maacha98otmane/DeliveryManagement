@@ -1,4 +1,6 @@
 const Admin = require('../models/admin')
+const User = require('../models/user')
+const Manager = require('../models/Manager')
 const jwt = require('jsonwebtoken')
 const signup = (req, res) => {
 
@@ -47,6 +49,36 @@ const signin = (req, res) => {
 
 
 }
+const createmanager =  (req,res)=>{
+    const {
+        username,
+        email,
+        password,
+        role,
+      } = req.body;
+
+      const UserData = {
+        email,
+        password,
+        role,
+
+      }
+
+    const user = new User(UserData);
+    user.save((err, User) => {
+        if (err) {
+            return res.status(400).send(err)
+        }
+        const ManagerData = {
+            username :username,
+            _id: User.id
+          }
+        res.send()
+        const manager = new Manager(ManagerData);
+        manager.save()
+    })
+    
+}
 const signout = (req, res) => {
     res.clearCookie('token');
     res.json({
@@ -57,5 +89,6 @@ const signout = (req, res) => {
 export {
     signup,
     signin,
+    createmanager,
     signout
 }
