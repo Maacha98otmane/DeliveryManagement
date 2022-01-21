@@ -6,6 +6,8 @@ import {
     login,
     createDeliveryManager,
     removedeliverymanager,
+    createDriver,
+    removedriver,
     logout,
 } from "../controllers"
 import {
@@ -14,9 +16,13 @@ import {
 } from "../middlewares"
 
 router.post("/login", login)
-router.get("/logout", logout)
+router.get("/logout", logout) 
+// process deliveryManager
 router.post("/CreateDeliveryManager", Auth("MANAGER"), CreatUserValidator, createDeliveryManager)
 router.delete("/RemoveDeliveryManager/:id", Auth("MANAGER"), removedeliverymanager)
 
+// process Driver
+router.post("/CreateDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
+router.delete("/RemoveDriver/:id", Auth("MANAGER"), removedriver)
 
 export { router }
