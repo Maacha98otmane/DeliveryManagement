@@ -1,18 +1,22 @@
 import express from "express";
 const router = express.Router();
+
+
 import {
-    signup,
-    // signin,
-    signout
+    login,
+    createDeliveryManager,
+    removedeliverymanager,
+    logout,
 } from "../controllers"
 import {
-    adminSignUpValidator
-} from "../middlewares/adminValidator"
+    CreatUserValidator,
+    Auth
+} from "../middlewares"
 
-router.post("/signup", adminSignUpValidator, signup)
-// router.post("/signin", signin)
-router.get("/signout", signout)
+router.post("/login", login)
+router.get("/logout", logout)
+router.post("/CreateDeliveryManager", Auth("MANAGER"), CreatUserValidator, createDeliveryManager)
+router.delete("/RemoveDeliveryManager/:id", Auth("MANAGER"), removedeliverymanager)
 
-export {
-    router
-}
+
+export { router }

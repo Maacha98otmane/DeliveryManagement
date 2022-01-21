@@ -1,5 +1,5 @@
-const Admin = require('../models/admin')
-exports.adminSignUpValidator = (req, res, next) => {
+
+const CreatUserValidator = (req, res, next) => {
     req.check('username', 'Username is Required !')
         .notEmpty();
 
@@ -20,3 +20,4 @@ exports.adminSignUpValidator = (req, res, next) => {
     }
     next()
 }
+export { CreatUserValidator }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const managerSchema = new mongoose.Schema({
+const driverSchema = new mongoose.Schema({
     username: {
         type: String,
         trim: true,
@@ -7,5 +7,5 @@ const managerSchema = new mongoose.Schema({
       }
 }, {
   timestamps: true
-},{collection:"managers"});
-module.exports = mongoose.model('Manager',managerSchema);
+},{collection:"drivers"});
+module.exports = mongoose.model('Driver',driverSchema);

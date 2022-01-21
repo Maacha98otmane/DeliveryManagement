@@ -1,8 +1,8 @@
 import User from "../models/user.js"
-import Manager from "../models/manager.js"
+import DeliveryManager from "../models/deliverymanager"
 
 
-const createManager = (req, res) => {
+const createDeliveryManager = (req, res) => {
 
     const {
         username,
@@ -13,7 +13,7 @@ const createManager = (req, res) => {
     const UserData = {
         email,
         password,
-        role : "MANAGER",
+        role : "DELIVERY_MANAGER",
 
     }
 
@@ -22,27 +22,34 @@ const createManager = (req, res) => {
         if (err) {
             return res.status(400).send(err)
         }
-        const ManagerData = {
+        const DeliveryManagerData = {
             username: username,
             _id: User.id
         }
-            const manager = new Manager(ManagerData);
-            manager.save()
+        try {
+            const deliverymanager = new DeliveryManager(DeliveryManagerData);
+            deliverymanager.save()
+        } catch (error) {
+            return res.status(400).json({
+                error
+            })
+
+        }
         return res.json({
             user,
-            manager
+            deliverymanager
         })
 
     })
 }
-const removemanager = async (req,res)=>{
+const removedeliverymanager = async (req,res)=>{
    
         const {
             id,
         } = req.params
        
        await User.findOneAndRemove({_id: id})
-       await Manager.findOneAndRemove({_id: id})    
+       await DeliveryManager.findOneAndRemove({_id: id})    
             res.json({
                 msg:"deleted with success"
             })
@@ -52,6 +59,6 @@ const removemanager = async (req,res)=>{
 
 
 export {
-    createManager,
-    removemanager
+    createDeliveryManager,
+    removedeliverymanager
 }
