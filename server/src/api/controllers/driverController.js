@@ -1,8 +1,8 @@
 import User from "../models/user.js"
-import DeliveryManager from "../models/deliverymanager"
+import Driver from "../models/driver"
 
 
-const createDeliveryManager = (req, res) => {
+const createDriver = (req, res) => {
 
     const {
         username,
@@ -13,7 +13,7 @@ const createDeliveryManager = (req, res) => {
     const UserData = {
         email,
         password,
-        role: "DELIVERY_MANAGER",
+        role: "DRIVER",
 
     }
 
@@ -22,22 +22,22 @@ const createDeliveryManager = (req, res) => {
         if (err) {
             return res.status(400).send(err)
         }
-        const DeliveryManagerData = {
+        const DriverData = {
             username: username,
             _id: User.id
         }
-        const deliverymanager = new DeliveryManager(DeliveryManagerData);
-        deliverymanager.save()
+        const drivermanager = new Driver(DriverData);
+        drivermanager.save()
         
             return res.json({
                 user,
-                deliverymanager
+                drivermanager
             })
 
     })
 
 }
-const removedeliverymanager = async (req, res) => {
+const removedriver = async (req, res) => {
 
     const {
         id,
@@ -46,7 +46,7 @@ const removedeliverymanager = async (req, res) => {
     await User.findOneAndRemove({
         _id: id
     })
-    await DeliveryManager.findOneAndRemove({
+    await Driver.findOneAndRemove({
         _id: id
     })
     res.json({
@@ -58,6 +58,6 @@ const removedeliverymanager = async (req, res) => {
 
 
 export {
-    createDeliveryManager,
-    removedeliverymanager
+    createDriver,
+    removedriver
 }

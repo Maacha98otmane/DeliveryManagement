@@ -10,6 +10,10 @@ export {
     createDeliveryManager,
     removedeliverymanager
 } from "./deliverymanagerController"
+export {
+    createDriver,
+    removedriver
+} from "./driverController"
 
 export {
     login,
