@@ -20,24 +20,28 @@ const createDriver = (req, res) => {
     const user = new User(UserData);
     user.save((err, User) => {
         if (err) {
-            return res.status(400).send(err)
+            return res.status(400).send({
+                status: false,
+                mes: err
+            })
         }
         const DriverData = {
             username: username,
-            _id: User.id
+            user: user._id
         }
-        const drivermanager = new Driver(DriverData);
-        drivermanager.save()
+        const driver = new Driver(DriverData);
+        driver.status(201).save()
         
             return res.json({
+                status: true,
                 user,
-                drivermanager
+                driver
             })
 
     })
 
 }
-const removedriver = async (req, res) => {
+const removeDriver = async (req, res) => {
 
     const {
         id,
@@ -54,10 +58,45 @@ const removedriver = async (req, res) => {
     })
 }
 
+const getAllDrivers = async (req, res) => {
+    try {
+        const drivers = await Driver.find().populate("user")
+        res.status(200).json({
+            status: true,
+            drivers
+
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            msg: err
+        })
+    }
+}
+
+const getDriver = async (req, res) => {
+    const id = req.params.id
+    try {
+        const driver = await Driver.findById({ _id: id }).populate("user")
+        res.status(200).json({
+            status: true,
+            driver
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            msg: err
+        })
+    }
+}
+
 
 
 
 export {
     createDriver,
-    removedriver
+    removeDriver,
+    getAllDrivers,
+    getDriver
+
 }

@@ -4,15 +4,21 @@ export {
 
 export {
     createManager,
-    removemanager
+    removeManager,
+    getAllManagers,
+    getManager
 } from "./managerController"
 export {
     createDeliveryManager,
-    removedeliverymanager
+    removeDeliveryManager,
+    getAllDeliveryManager,
+    getDeliveryManager
 } from "./deliverymanagerController"
 export {
     createDriver,
-    removedriver
+    removeDriver,
+    getAllDrivers,
+    getDriver
 } from "./driverController"
 
 export {

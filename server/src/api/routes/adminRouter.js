@@ -6,7 +6,7 @@ import {
     loginAdmin,
     logout,
     createManager,
-    removemanager
+    removeManager
 } from "../controllers"
 
 import {
@@ -17,6 +17,6 @@ import {
 router.post("/login", loginAdmin)
 router.get("/logout", logout)
 router.post("/createManager", Auth("ADMIN"), CreatUserValidator, createManager)
-router.delete("/RemoveManager/:id", Auth("ADMIN"), removemanager)
+router.delete("/RemoveManager/:id", Auth("ADMIN"), removeManager)
 
 export { router }
