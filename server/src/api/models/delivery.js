@@ -12,12 +12,11 @@ const deliverySchema = new mongoose.Schema({
   },
   zoneType: {
     type: String,
-    default:null,
     trim: true,
     enum: {
-      values: ['Europe', 'America', 'Asia', 'Australia'],
+      values: ['local','Europe', 'America', 'Asia', 'Australia'],
       message: 'is not supported'
-    }
+    },
   },
   weight: {
     type: Number,
@@ -45,7 +44,7 @@ const deliverySchema = new mongoose.Schema({
     min: 0
   },
   status: {
-    type: Number,
+    type: String,
     required: true,
     default: "waitlist",
     enum: {

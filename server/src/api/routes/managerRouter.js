@@ -11,6 +11,11 @@ import {
     createDriver,
     removeDriver,
     getAllDrivers,
+    getAllVehicleType,
+    addVehicleType,
+    getVehicleType,
+    deleteVehicleType,
+    updateVehicleType,
     getDriver,
     logout,
 } from "../controllers"
@@ -20,7 +25,7 @@ import {
 } from "../middlewares"
 
 router.post("/login", login)
-router.get("/logout", logout) 
+router.get("/logout", logout)
 // process deliveryManager
 router.post("/CreateDeliveryManager", Auth("MANAGER"), CreatUserValidator, createDeliveryManager)
 router.delete("/RemoveDeliveryManager/:id", Auth("MANAGER"), removeDeliveryManager)
@@ -28,14 +33,20 @@ router.get("/getAllDeliveryManager", Auth("MANAGER"), getAllDeliveryManager)
 router.get("/getDeliveryManager/:id", Auth("MANAGER"), getDeliveryManager)
 
 // process Driver
-router.post("/CreateDriver", Auth("MANAGER"),CreatUserValidator, createDriver)
-router.delete("/RemoveDriver/:id", Auth("MANAGER"),removeDriver)
-router.get("/getAllDrivers", Auth("MANAGER"),getAllDrivers)
-router.get("/getDriver/:id", Auth("MANAGER"),getDriver)
+router.post("/CreateDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
+router.delete("/RemoveDriver/:id", Auth("MANAGER"), removeDriver)
+router.get("/getAllDrivers", Auth("MANAGER"), getAllDrivers)
+router.get("/getDriver/:id", Auth("MANAGER"), getDriver)
 
 
-//create
-//update
-//
+// VEHICLE TYPE 
+router.get("/getAllVehicleType", getAllVehicleType);
+router.post("/addVehicleType", addVehicleType);
+router.get("/getVehicleType/:id", getVehicleType);
+router.delete("/deleteVehicleType/:id", deleteVehicleType);
+router.put("/updateVehicleType/:id", updateVehicleType);
 
-export { router }
+
+export {
+    router
+}

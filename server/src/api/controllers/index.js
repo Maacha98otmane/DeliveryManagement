@@ -1,6 +1,7 @@
 export {
     loginAdmin,
-} from "./adminController"
+}
+from "./adminController"
 
 export {
     createManager,
@@ -8,21 +9,39 @@ export {
     updateManager,
     getAllManagers,
     getManager
-} from "./managerController"
+}
+from "./managerController"
 export {
     createDeliveryManager,
     removeDeliveryManager,
     getAllDeliveryManager,
     getDeliveryManager
-} from "./deliverymanagerController"
+}
+from "./deliverymanagerController"
 export {
     createDriver,
     removeDriver,
     getAllDrivers,
     getDriver
-} from "./driverController"
+}
+from "./driverController"
 
 export {
     login,
     logout
-} from "./authController"
+}
+from "./authController"
+
+export {
+    getVehicleType,
+    getAllVehicleType,
+    addVehicleType,
+    deleteVehicleType,
+    updateVehicleType
+}
+from "./vehicleTypeController";
+
+export {
+    addDelivery
+}
+from "./deliveryController";
