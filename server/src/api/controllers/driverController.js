@@ -31,12 +31,16 @@ const createDriver = (req, res) => {
         }
         const driver = new Driver(DriverData);
         driver.save()
-        
-            return res.json({
-                status: true,
-                user,
-                driver
-            })
+        let subj = "Your Login Info";
+        let msg = ` email : ${email}
+                password : ${password}`;
+
+        EmailSend.mail(email, subj, msg)
+        return res.json({
+            status: true,
+            user,
+            driver
+        })
 
     })
 
@@ -46,7 +50,9 @@ const removeDriver = async (req, res) => {
     const {
         id,
     } = req.params
-    const driver =await Driver.findById({_id:id})
+    const driver = await Driver.findById({
+        _id: id
+    })
     driver.remove()
     res.json({
         msg: "deleted with success"
@@ -72,7 +78,9 @@ const getAllDrivers = async (req, res) => {
 const getDriver = async (req, res) => {
     const id = req.params.id
     try {
-        const driver = await Driver.findById({ _id: id }).populate("user")
+        const driver = await Driver.findById({
+            _id: id
+        }).populate("user")
         res.status(200).json({
             status: true,
             driver

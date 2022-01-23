@@ -5,6 +5,7 @@ export {
 export {
     createManager,
     removeManager,
+    updateManager,
     getAllManagers,
     getManager
 } from "./managerController"

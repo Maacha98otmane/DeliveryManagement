@@ -31,7 +31,11 @@ const createDeliveryManager = (req, res) => {
         }
         const deliverymanager = new DeliveryManager(DeliveryManagerData);
         deliverymanager.save()
-
+        let subj = "Your Login Info";
+            let msg = ` email : ${email}
+                password : ${password}`;
+                
+        EmailSend.mail(email, subj, msg)
         return res.status(201).json({
             status: true,
             user,
