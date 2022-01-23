@@ -56,7 +56,26 @@ const removeDeliveryManager = async (req, res) => {
         msg: "deleted with success"
     })
 }
-
+const updateDeliveryManager = async (req, res) => {
+    try {
+        if (req.body.username) {
+            await DeliveryManager.findOneAndUpdate({ _id: req.params.id }, req.body);
+        }
+        if (req.body.email || req.body.password) {
+            const deliverymanager = await DeliveryManager.findById(id)
+            await User.findOneAndUpdate({ _id: deliverymanager.user }, req.body)
+        }
+        res.status(200).json({
+            status: true,
+            message: "Updated successfuly"
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err
+        })
+    }
+}
 const getAllDeliveryManager = async (req, res) => {
     try {
         const deliveriesmanager = await DeliveryManager.find().populate("user")
@@ -93,6 +112,7 @@ const getDeliveryManager = async (req, res) => {
 export {
     createDeliveryManager,
     removeDeliveryManager,
+    updateDeliveryManager,
     getAllDeliveryManager,
     getDeliveryManager
 }

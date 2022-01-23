@@ -58,7 +58,26 @@ const removeDriver = async (req, res) => {
         msg: "deleted with success"
     })
 }
-
+const updateDriver = async (req, res) => {
+    try {
+        if (req.body.username) {
+            await Driver.findOneAndUpdate({ _id: req.params.id }, req.body);
+        }
+        if (req.body.email || req.body.password) {
+            const driver = await Driver.findById(id)
+            await User.findOneAndUpdate({ _id: driver.user }, req.body)
+        }
+        res.status(200).json({
+            status: true,
+            message: "Updated successfuly"
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err
+        })
+    }
+}
 const getAllDrivers = async (req, res) => {
     try {
         const drivers = await Driver.find().populate("user")
@@ -99,6 +118,7 @@ const getDriver = async (req, res) => {
 export {
     createDriver,
     removeDriver,
+    updateDriver,
     getAllDrivers,
     getDriver
 

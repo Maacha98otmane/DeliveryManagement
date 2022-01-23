@@ -10,12 +10,14 @@ import {
     getDeliveryManager,
     createDriver,
     removeDriver,
+    updateDriver,
     getAllDrivers,
     getAllVehicleType,
     addVehicleType,
     getVehicleType,
     deleteVehicleType,
     updateVehicleType,
+    updateDeliveryManager,
     getDriver,
     logout,
 } from "../controllers"
@@ -29,12 +31,14 @@ router.get("/logout", logout)
 // process deliveryManager
 router.post("/CreateDeliveryManager", Auth("MANAGER"), CreatUserValidator, createDeliveryManager)
 router.delete("/RemoveDeliveryManager/:id", Auth("MANAGER"), removeDeliveryManager)
+router.patch("/updateDeliveryManager/:id", Auth("MANAGER"), updateDeliveryManager)
 router.get("/getAllDeliveryManager", Auth("MANAGER"), getAllDeliveryManager)
 router.get("/getDeliveryManager/:id", Auth("MANAGER"), getDeliveryManager)
 
 // process Driver
 router.post("/CreateDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
 router.delete("/RemoveDriver/:id", Auth("MANAGER"), removeDriver)
+router.patch("/updateDriver/:id", Auth("MANAGER"), updateDriver)
 router.get("/getAllDrivers", Auth("MANAGER"), getAllDrivers)
 router.get("/getDriver/:id", Auth("MANAGER"), getDriver)
 

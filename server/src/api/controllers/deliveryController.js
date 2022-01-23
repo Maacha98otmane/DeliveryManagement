@@ -25,11 +25,9 @@ const addDelivery = async (req, res) => {
             additionalData.price = (weight - 3) * 5 + 120;
         }
     }else{
-        console.log("inside International");
         switch( req.body.zoneType ){ // 'Europe', 'America', 'Asia', 'Australia'
             
             case "Europe":
-                console.log("inside Europe condition")
                 additionalData.price = weight * 160
             break;
             case "America":

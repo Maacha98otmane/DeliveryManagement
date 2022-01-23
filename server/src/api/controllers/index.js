@@ -14,6 +14,7 @@ from "./managerController"
 export {
     createDeliveryManager,
     removeDeliveryManager,
+    updateDeliveryManager,
     getAllDeliveryManager,
     getDeliveryManager
 }
@@ -21,6 +22,7 @@ from "./deliverymanagerController"
 export {
     createDriver,
     removeDriver,
+    updateDriver,
     getAllDrivers,
     getDriver
 }

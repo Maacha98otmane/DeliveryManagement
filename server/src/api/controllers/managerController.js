@@ -51,18 +51,25 @@ const createManager = (req, res) => {
     })
 }
 const updateManager = async (req, res) => {
-
-    const {
-        id,
-    } = req.params
-    console.log(id)
-    console.log(req.body)
-    // const manager =await Manager.findById({_id:id})
-    // manager.remove()
-    res.json({
-        msg: "UPDATE with success"
-    })
-}
+    try {
+       if (req.body.username) {
+          await Manager.findOneAndUpdate({ _id: req.params.id }, req.body);
+       }
+       if (req.body.email || req.body.password) {
+          const manager = await Manager.findById(id)
+          await User.findOneAndUpdate({ _id: manager.user }, req.body)
+       }
+       res.status(200).json({
+          status: true,
+          message: "Updated successfuly"
+       })
+    } catch (err) {
+       res.status(400).json({
+          status: false,
+          message: err
+       })
+    }
+ }
 const removeManager = async (req, res) => {
 
     const {
