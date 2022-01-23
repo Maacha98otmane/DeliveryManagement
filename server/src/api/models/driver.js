@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./user')
 const driverSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -12,4 +13,9 @@ const driverSchema = new mongoose.Schema({
 }, {
   timestamps: true
 },{collection:"drivers"});
+driverSchema.pre('remove',async function(next){
+  const driverdeleted = this
+  await User.deleteOne({_id:driverdeleted.user})
+  next()
+})
 module.exports = mongoose.model('Driver',driverSchema);

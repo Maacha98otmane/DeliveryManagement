@@ -40,13 +40,8 @@ const removeManager = async (req, res) => {
     const {
         id,
     } = req.params
-
-    await User.findOneAndRemove({
-        _id: id
-    })
-    await Manager.findOneAndRemove({
-        _id: id
-    })
+    const manager =await Manager.findById({_id:id})
+    manager.remove()
     res.json({
         msg: "deleted with success"
     })

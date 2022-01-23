@@ -30,7 +30,7 @@ const createDriver = (req, res) => {
             user: user._id
         }
         const driver = new Driver(DriverData);
-        driver.status(201).save()
+        driver.save()
         
             return res.json({
                 status: true,
@@ -46,13 +46,8 @@ const removeDriver = async (req, res) => {
     const {
         id,
     } = req.params
-
-    await User.findOneAndRemove({
-        _id: id
-    })
-    await Driver.findOneAndRemove({
-        _id: id
-    })
+    const driver =await Driver.findById({_id:id})
+    driver.remove()
     res.json({
         msg: "deleted with success"
     })

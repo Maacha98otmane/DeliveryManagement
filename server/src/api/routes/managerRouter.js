@@ -28,9 +28,9 @@ router.get("/getAllDeliveryManager", Auth("MANAGER"), getAllDeliveryManager)
 router.get("/getDeliveryManager/:id", Auth("MANAGER"), getDeliveryManager)
 
 // process Driver
-router.post("/CreateDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
-router.delete("/RemoveDriver/:id", Auth("MANAGER"), removeDriver)
-router.get("/getAllDrivers", Auth("MANAGER"), getAllDrivers)
-router.get("/getDriver/:id", Auth("MANAGER"), getDriver)
+router.post("/CreateDriver", Auth("MANAGER"),CreatUserValidator, createDriver)
+router.delete("/RemoveDriver/:id", Auth("MANAGER"),removeDriver)
+router.get("/getAllDrivers", Auth("MANAGER"),getAllDrivers)
+router.get("/getDriver/:id", Auth("MANAGER"),getDriver)
 
 export { router }

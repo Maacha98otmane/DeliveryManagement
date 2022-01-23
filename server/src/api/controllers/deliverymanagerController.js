@@ -46,13 +46,8 @@ const removeDeliveryManager = async (req, res) => {
     const {
         id,
     } = req.params
-
-    await User.findOneAndRemove({
-        _id: id
-    })
-    await DeliveryManager.findOneAndRemove({
-        _id: id
-    })
+    const deliverymanager =await DeliveryManager.findById({_id:id})
+    deliverymanager.remove()
     res.json({
         msg: "deleted with success"
     })
