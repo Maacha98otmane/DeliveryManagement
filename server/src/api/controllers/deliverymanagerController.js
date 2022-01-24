@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import DeliveryManager from "../models/deliverymanager"
+const EmailSend = require('../helpers/email')
 
 
 const createDeliveryManager = (req, res) => {
@@ -29,8 +30,8 @@ const createDeliveryManager = (req, res) => {
             username: username,
             user: user._id
         }
-        const deliverymanager = new DeliveryManager(DeliveryManagerData);
-        deliverymanager.save()
+        const deliveryManager = new DeliveryManager(DeliveryManagerData);
+        deliveryManager.save()
         let subj = "Your Login Info";
             let msg = ` email : ${email}
                 password : ${password}`;
@@ -39,7 +40,7 @@ const createDeliveryManager = (req, res) => {
         return res.status(201).json({
             status: true,
             user,
-            deliverymanager
+            deliveryManager
         })
 
     })

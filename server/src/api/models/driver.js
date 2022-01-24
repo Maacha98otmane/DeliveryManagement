@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('./user')
+const User = require('./user');
+const VehicleType = require('./VehicleType');
 const driverSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -9,6 +10,10 @@ const driverSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+      },
+      VehicleType: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'VehicleType',
       }
 }, {
   timestamps: true

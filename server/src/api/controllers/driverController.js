@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import Driver from "../models/driver"
+const EmailSend = require('../helpers/email')
 
 
 const createDriver = (req, res) => {
@@ -27,7 +28,9 @@ const createDriver = (req, res) => {
         }
         const DriverData = {
             username: username,
-            user: user._id
+            user: user._id,
+            VehicleType: req.body.vehicleId
+
         }
         const driver = new Driver(DriverData);
         driver.save()
@@ -80,7 +83,7 @@ const updateDriver = async (req, res) => {
 }
 const getAllDrivers = async (req, res) => {
     try {
-        const drivers = await Driver.find().populate("user")
+        const drivers = await Driver.find().populate("user").populate("VehicleType")
         res.status(200).json({
             status: true,
             drivers
@@ -99,7 +102,7 @@ const getDriver = async (req, res) => {
     try {
         const driver = await Driver.findById({
             _id: id
-        }).populate("user")
+        }).populate("user").populate("VehicleType")
         res.status(200).json({
             status: true,
             driver
