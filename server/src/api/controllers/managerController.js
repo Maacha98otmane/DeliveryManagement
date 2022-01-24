@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import Manager from "../models/manager.js"
+const logger = require('../../config/winston');
 const EmailSend = require('../helpers/email')
 
 
@@ -21,6 +22,7 @@ const createManager = (req, res) => {
     const user = new User(UserData);
     user.save((err, User) => {
         if (err) {
+            logger.error(err);
             return res.status(400).send(err)
 
         }
@@ -35,6 +37,7 @@ const createManager = (req, res) => {
                     _id: user._id
                 })
                 user.remove()
+                logger.error(err);
                 return res.status(400).send(err)
             }
             let subj = "Your Login Info";
@@ -42,6 +45,7 @@ const createManager = (req, res) => {
                 password : ${password}`;
                 
             EmailSend.mail(email, subj, msg)
+            logger.info(`Manager user:${req.body.username} created!`);
             return res.json({
                 user,
                 manager
@@ -59,11 +63,13 @@ const updateManager = async (req, res) => {
           const manager = await Manager.findById(id)
           await User.findOneAndUpdate({ _id: manager.user }, req.body)
        }
+       logger.info(`Manager user:${req.body.username} Updated!`);
        res.status(200).json({
           status: true,
           message: "Updated successfuly"
        })
     } catch (err) {
+        logger.error(err);
        res.status(400).json({
           status: false,
           message: err
@@ -78,10 +84,16 @@ const removeManager = async (req, res) => {
     const manager = await Manager.findById({
         _id: id
     })
-    manager.remove()
-    res.json({
-        msg: "deleted with success"
+    manager.remove((err,res)=>{
+        if(err){
+            logger.error(err);
+        }
+        logger.info(`Manager user:${manager.username} deleted!`);
+        res.json({
+            msg: "deleted with success"
+        })
     })
+    
 }
 
 const getAllManagers = async (req, res) => {
