@@ -44,11 +44,11 @@ router.get("/getDriver/:id", Auth("MANAGER"), getDriver)
 
 
 // VEHICLE TYPE 
-router.get("/getAllVehicleType", getAllVehicleType);
-router.post("/addVehicleType", addVehicleType);
-router.get("/getVehicleType/:id", getVehicleType);
-router.delete("/deleteVehicleType/:id", deleteVehicleType);
-router.put("/updateVehicleType/:id", updateVehicleType);
+router.get("/getAllVehicleType",Auth("MANAGER"), getAllVehicleType);
+router.post("/addVehicleType",Auth("MANAGER"), addVehicleType);
+router.get("/getVehicleType/:id",Auth("MANAGER"), getVehicleType);
+router.delete("/deleteVehicleType/:id",Auth("MANAGER"), deleteVehicleType);
+router.put("/updateVehicleType/:id",Auth("MANAGER"), updateVehicleType);
 
 
 export {

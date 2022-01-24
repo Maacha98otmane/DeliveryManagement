@@ -14,7 +14,9 @@ const colors = {
 winston.addColors(colors);
 
 const format = winston.format.combine(
-  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+  winston.format.timestamp({
+    format: 'YYYY-MM-DD HH:mm:ss:ms'
+  }),
   winston.format.printf(
     (info) => `${info.timestamp} ${info.level}: ${info.message}`,
   ),
@@ -25,16 +27,20 @@ const transports = [
     format: winston.format.combine(winston.format.colorize(), format),
   }),
   new winston.transports.MongoDB({
-    db:process.env.mongoURL,
-    options:{ useUnifiedTopology: true },
-    collection:'loggers_info',
-    level:'info'
+    db: process.env.mongoURL,
+    options: {
+      useUnifiedTopology: true
+    },
+    collection: 'loggers_info',
+    level: 'info'
   }),
   new winston.transports.MongoDB({
-    db:process.env.mongoURL,
-    options:{ useUnifiedTopology: true },
-    collection:'loggers_error',
-    level:'error'
+    db: process.env.mongoURL,
+    options: {
+      useUnifiedTopology: true
+    },
+    collection: 'loggers_error',
+    level: 'error'
   }),
   new winston.transports.File({
     filename: 'logs/error.log',

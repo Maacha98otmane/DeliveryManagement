@@ -66,7 +66,30 @@ const addDelivery = async (req, res) => {
         });
     }
 };
+const asignDelivery = async(req,res)=>{
+    
+}
+const deleteDelivery = async(req,res)=>{
+    try {
+        const {
+           id,
+        } = req.params
+  
+        await Delivery.findOneAndRemove({ _id: id },{status:"waitlist"})
+        res.status(200).json({
+           status: true,
+           message: "deleted successfully"
+        })
+     } catch (err) {
+        res.status(400).json({
+           status: false,
+           message: err
+        })
+     }
+}
 
 export {
-    addDelivery
+    addDelivery,
+    deleteDelivery,
+    asignDelivery
 };

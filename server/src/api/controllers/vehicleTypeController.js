@@ -53,7 +53,6 @@ const addVehicleType = async (req, res) => {
 }
 
 const deleteVehicleType = async (req, res) => {
-    console.log(req.params);
 
     try {
         const {

@@ -44,6 +44,8 @@ export {
 from "./vehicleTypeController";
 
 export {
-    addDelivery
+    addDelivery,
+    asignDelivery,
+    deleteDelivery
 }
 from "./deliveryController";
