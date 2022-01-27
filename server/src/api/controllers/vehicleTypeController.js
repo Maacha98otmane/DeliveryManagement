@@ -34,6 +34,16 @@ const getAllVehicleType = async (req, res) => {
     }
     
 }
+const getIDVehicleType = async (name) => {
+
+    try {
+
+        return await VehicleType.findOne({ name: name }).select({ _id: 1 });
+    } catch (err) {
+        return null
+    }
+    
+}
 
 const addVehicleType = async (req, res) => {
 
@@ -93,4 +103,4 @@ const updateVehicleType = async (req, res) => {
 
 
 
-export { getVehicleType ,getAllVehicleType , addVehicleType, deleteVehicleType, updateVehicleType}
+export { getVehicleType ,getAllVehicleType ,getIDVehicleType, addVehicleType, deleteVehicleType, updateVehicleType}

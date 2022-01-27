@@ -36,16 +36,16 @@ router.get("/getAllDeliveryManager", Auth("MANAGER"), getAllDeliveryManager)
 router.get("/getDeliveryManager/:id", Auth("MANAGER"), getDeliveryManager)
 
 // process Driver
-router.post("/CreateDriver",  CreatUserValidator, createDriver)
+router.post("/CreateDriver", Auth("MANAGER"),  CreatUserValidator, createDriver)
 router.delete("/RemoveDriver/:id", Auth("MANAGER"), removeDriver)
 router.patch("/updateDriver/:id", Auth("MANAGER"), updateDriver)
-router.get("/getAllDrivers",  getAllDrivers)
-router.get("/getDriver/:id", getDriver)
+router.get("/getAllDrivers", Auth("MANAGER"),  getAllDrivers)
+router.get("/getDriver/:id", Auth("MANAGER"), getDriver)
 
 
 // VEHICLE TYPE 
 router.get("/getAllVehicleType",Auth("MANAGER"), getAllVehicleType);
-router.post("/addVehicleType", addVehicleType);
+router.post("/addVehicleType", Auth("MANAGER"), addVehicleType);
 router.get("/getVehicleType/:id",Auth("MANAGER"), getVehicleType);
 router.delete("/deleteVehicleType/:id",Auth("MANAGER"), deleteVehicleType);
 router.put("/updateVehicleType/:id",Auth("MANAGER"), updateVehicleType);

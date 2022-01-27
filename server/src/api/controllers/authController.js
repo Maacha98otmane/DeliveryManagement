@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import { createToken } from "../helpers";
+const logger = require('../../config/winston');
 
 const login = (req, res) => {
     const {
@@ -22,7 +23,7 @@ const login = (req, res) => {
                 error: 'Email and Password dont Match !'
             })
         }
-
+        logger.info(`login: ${result.email} logged!`);
         const token = createToken({ result }, result.role);
         res.cookie('token', token, {
             expires: new Date(Date.now() + 4 * 3600000)

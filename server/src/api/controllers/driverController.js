@@ -29,6 +29,7 @@ const createDriver = (req, res) => {
         const DriverData = {
             username: username,
             user: user._id,
+            _id: user._id,
             VehicleType: req.body.vehicleId
 
         }
@@ -72,7 +73,7 @@ const updateDriver = async (req, res) => {
         }
         res.status(200).json({
             status: true,
-            message: "Updated successfuly"
+            message: "Updated successfully"
         })
     } catch (err) {
         res.status(400).json({

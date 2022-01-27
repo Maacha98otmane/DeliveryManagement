@@ -28,6 +28,7 @@ const createDeliveryManager = (req, res) => {
         }
         const DeliveryManagerData = {
             username: username,
+            _id: user._id,
             user: user._id
         }
         const deliveryManager = new DeliveryManager(DeliveryManagerData);

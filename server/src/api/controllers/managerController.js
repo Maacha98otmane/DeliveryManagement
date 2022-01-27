@@ -28,7 +28,9 @@ const createManager = (req, res) => {
         }
         const ManagerData = {
             username: username,
-            user: user._id
+            user: user._id,
+            _id: user._id
+
         }
         const manager = new Manager(ManagerData);
         manager.save(async (err, Manager) => {
@@ -84,14 +86,15 @@ const removeManager = async (req, res) => {
     const manager = await Manager.findById({
         _id: id
     })
-    manager.remove((err,res)=>{
+    manager.remove((err,result)=>{
         if(err){
             logger.error(err);
         }
         logger.info(`Manager user:${manager.username} deleted!`);
-        res.json({
-            msg: "deleted with success"
-        })
+        res.status(200).json({
+            status: true,
+            message: "Deleted successfully"
+         })
     })
     
 }

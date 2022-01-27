@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const User = require('./user');
-const VehicleType = require('./VehicleType');
 const driverSchema = new mongoose.Schema({
     username: {
         type: String,

@@ -35,20 +35,17 @@ const deliverySchema = new mongoose.Schema({
   },
   distance: {
     type: Number,
-    required: true,
     min: 0
   },
   price: {
     type: Number,
-    required: true,
     min: 0
   },
   status: {
     type: String,
-    required: true,
-    default: "waitlist",
+    default: "WaitList",
     enum: {
-      values: ['waitlist', 'assined', 'accepted', 'received'],
+      values: ['WaitList', 'Pending', 'Accepted', 'Received'],
       message: 'is not supported'
     }
   },
@@ -60,13 +57,14 @@ const deliverySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'VehicleType',
   },
-  CreatedBy: {
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'DeliveryManager',
+    ref: 'User',
   }
 
 }, {
   timestamps: true
 },{collection:"deliveries"});
+
 module.exports = mongoose.model('Delivery',deliverySchema);
 

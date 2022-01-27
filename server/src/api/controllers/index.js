@@ -38,6 +38,7 @@ export {
     getVehicleType,
     getAllVehicleType,
     addVehicleType,
+    getIDVehicleType,
     deleteVehicleType,
     updateVehicleType
 }
@@ -45,7 +46,10 @@ from "./vehicleTypeController";
 
 export {
     addDelivery,
+    getDelivery,
+    getAllDeliveries,
+    updateDeliveryStatus,
     asignDelivery,
-    deleteDelivery
+    removeDelivery
 }
 from "./deliveryController";
