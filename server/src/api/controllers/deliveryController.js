@@ -78,44 +78,37 @@ const asignDelivery = async(req,res)=>{
     if(drivers.length != 0){
         var check =false
         console.log("before",check)
-
-         await drivers.forEach(
+        drivers.forEach(
             async function(element) {
+
                 console.log("driver",element._id)
 
-/*  */
+                const dd = await Delivery.exists({driver : element._id , status : "Accepted"})
 
-const dd = await Delivery.exists({driver : element._id , status : "Accepted"})
                 if(!dd){
                     console.log(element.user.email)
                     let subj = "Delivery available Check it Now!";
                     let msg = ` Go to the site`;
-                    // EmailSend.mail(element.user.email, subj, msg)
+                    EmailSend.mail(element.user.email, subj, msg)
                     check=true
-
                 }
+            });
 
-/*  */
-
-                // const dd = await Delivery.findOne({ $and: [ { driver: { $in: [ element._id ]} }, { status: { $ne: "Received" } } ] } )
-                // console.log(dd)
-                // if(!dd){
-                //     console.log(element.user.email)
-                //     let subj = "Delivery available Check it Now!";
-                //     let msg = ` Go to the site`;
-                //     EmailSend.mail(element.user.email, subj, msg)
-                // }
-            }      
-        
-            );
+            
         console.log("after",check)
-        // delivery.status ="Pending"
-        // await delivery.save()
-    
-        // res.status(200).json({
-        //     status: true,
-        //     msg:"Change status to Pending"
-        //  })
+        if(check){
+            delivery.status ="Pending"
+            await delivery.save()
+            res.status(200).json({
+                status: true,
+                msg:"Change status to Pending"
+             })
+        }else{
+            res.status(400).json({
+                status: false,
+                msg:"can't Change status"
+             })
+        }
     }else{
         res.status(400).json({
             status: false,
